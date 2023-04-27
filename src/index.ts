@@ -1,14 +1,14 @@
 import dotenv from "dotenv";
+import app from "./app";
+import { mongoDBConnection } from "./config";
+import { Logging } from "./helpers";
+
 dotenv.config();
 // Uncaught Exceptions
 process.on("uncaughtException", (err) => {
     Logging.error(err);
     process.exit(1);
 });
-
-import app from "./app";
-import { mongoDBConnection } from "./config";
-import { Logging } from "./helpers";
 
 mongoDBConnection();
 if (!process.env.APP_PORT) {

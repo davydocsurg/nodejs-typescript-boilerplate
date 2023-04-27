@@ -1,6 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { Logging } from "../helpers";
-import { Example } from "../models";
+import { ExampleService } from "../services";
 
 class ExampleController {
     constructor() {
@@ -9,19 +8,21 @@ class ExampleController {
 
     async createExample(req: Request, res: Response, next: NextFunction) {
         try {
-            let example = await Example.create({
-                title: req.body.title,
-                description: req.body.description,
-            });
+            const example = await ExampleService.createExample(req);
+
             res.status(200).json({
                 success: true,
-                results: 1,
                 data: {
                     example,
                 },
             });
         } catch (err) {
-            Logging.error(err);
+            return res.json({
+                success: false,
+                errors: {
+                    err,
+                },
+            });
         }
     }
 }
