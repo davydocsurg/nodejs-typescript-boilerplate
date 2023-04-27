@@ -23,7 +23,7 @@ app.use(express.json());
 app.use(express.static("public"));
 app.get("/", (req: Request, res: Response) => {
     res.status(200).json({
-        message: "You have reached Example api home page",
+        message: "You have reached Nodejs Typescript Boilerplate home page.",
         success: true,
     });
 });
