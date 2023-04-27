@@ -3,5 +3,5 @@ module.exports = {
     testMatch: ["./**.test.ts"],
     testTimeout: 20000,
     testEnvironment: "node",
-    moduleFileExtensions: ["ts", "json"],
+    moduleFileExtensions: ["ts", "json", "js"],
 };
