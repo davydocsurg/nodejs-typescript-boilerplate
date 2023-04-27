@@ -1,0 +1,38 @@
+version: '3'
+
+services:
+  ntb:
+    image: ntb
+    volumes:
+      - ./:/ntb
+    env_file: .env
+    build: .
+    ports:
+      - "8080:8080"
+    networks:
+      - ntb-network
+    depends_on:
+      - ntb-mongo
+    command:  "npm run dev"
+
+  ntb-mongo:
+    image: mongo:5.0
+    container_name: ntb-mongo
+    ports:
+      - "27017:27017"
+    networks:
+      - ntb-network
+    volumes:
+      - ntb-mongo:/data/db
+      - ntb-mongo_config:/data/configdb
+
+volumes:
+  ntb-mongo:
+    driver: local
+  ntb-mongo_config:
+    driver: local
+
+networks:
+  ntb-network:
+    driver: bridge
+
