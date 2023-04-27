@@ -1,6 +1,4 @@
 import { NextFunction, Request, Response } from "express";
-import { Logging } from "../helpers";
-import { Example } from "../models";
 import { ExampleService } from "../services";
 
 class ExampleController {
