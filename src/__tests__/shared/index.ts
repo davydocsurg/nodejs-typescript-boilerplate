@@ -1,3 +1,3 @@
-import { createMockResource } from "./commands";
+import { createMockResource, fetchMockResources } from "./commands";
 
-export { createMockResource };
+export { createMockResource, fetchMockResources };

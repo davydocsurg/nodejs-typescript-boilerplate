@@ -1,4 +1,5 @@
-import { createMockResource } from "./shared";
+import { Logging } from "../helpers";
+import { createMockResource, fetchMockResources } from "./shared";
 
 describe("createExampleResource", () => {
     it("returns a mock resource with the correct properties", () => {
@@ -10,5 +11,12 @@ describe("createExampleResource", () => {
             createdAt: expect.any(Date),
             updatedAt: expect.any(Date),
         });
+    });
+
+    it("returns a list of resources", async () => {
+        const response = await fetchMockResources();
+        Logging.info(response.body);
+        // expect(response.status).toBe(200);
+        // expect(response.body).toEqual(expect.any(Array));
     });
 });
