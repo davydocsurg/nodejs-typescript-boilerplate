@@ -2,6 +2,7 @@ import { MockResource, exampleResource } from "../__mocks__";
 import chai from "chai";
 import chaiHttp from "chai-http";
 import app from "../../app";
+import { Logging } from "../../helpers";
 
 chai.use(chaiHttp);
 
@@ -17,7 +18,8 @@ const createMockResource = (title: string): MockResource => {
 };
 
 const fetchMockResources = async () => {
-    const res = await chaiServer.get("/resources/fetch");
+    const res = await chaiServer.get("/examples/fetch");
+    Logging.info(res.body);
     return res;
 };
 

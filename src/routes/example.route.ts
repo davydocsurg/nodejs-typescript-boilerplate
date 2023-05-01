@@ -11,4 +11,9 @@ exampleRoutes.post(
     catchAsync(ExampleController.createExample)
 );
 
+exampleRoutes.get(
+    "/examples/fetch",
+    catchAsync(ExampleController.fetchExamples)
+);
+
 export default exampleRoutes;
