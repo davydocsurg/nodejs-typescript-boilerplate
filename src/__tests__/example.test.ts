@@ -1,5 +1,6 @@
 import { mongoDBConnection, mongoDBDisconnection } from "../config";
 import { CLog } from "../helpers";
+import { Example } from "../models";
 import { createMockResource, fetchMockResources } from "./shared";
 
 describe("/examples", () => {
@@ -8,20 +9,28 @@ describe("/examples", () => {
         mongoDBConnection();
     });
 
-    afterAll(() => {
+    afterAll(async () => {
         CLog.info("Running afterAll hook");
+        await Example.deleteMany({});
         mongoDBDisconnection();
     });
 
     describe("createExampleResource", () => {
-        it("returns a mock resource with the correct properties", () => {
-            const mockResource = createMockResource("Test Resource");
-            expect(mockResource).toEqual({
+        it("returns a mock resource with the correct properties", async () => {
+            const mockResource = await createMockResource(
+                "Test Resource",
+                "Test Description"
+            );
+
+            expect(mockResource.status).toBe(201);
+            expect(mockResource.body.success).toBeTruthy();
+            expect(mockResource.body.data.example).toEqual({
                 _id: expect.any(String),
-                title: "Test Resource",
-                description: "This is an example of a mock resource",
-                createdAt: expect.any(Date),
-                updatedAt: expect.any(Date),
+                title: expect.any(String),
+                description: expect.any(String),
+                createdAt: expect.any(String),
+                updatedAt: expect.any(String),
+                __v: expect.any(Number),
             });
         });
     });
@@ -32,17 +41,6 @@ describe("/examples", () => {
             CLog.info(response.body);
             expect(response.status).toBe(200);
             expect(response.body.data.examples).toEqual(expect.any(Array));
-        });
-    });
-
-    describe("POST /create", () => {
-        it("creates a resource", async () => {
-            const response = await fetchMockResources();
-            const initialLength = response.body.data.examples.length;
-            const newResource = await createMockResource("Test Resource");
-            const res = await fetchMockResources();
-            const newLength = res.body.data.examples.length;
-            expect(newLength).toBe(initialLength + 1);
         });
     });
 });

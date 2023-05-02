@@ -10,7 +10,7 @@ class ExampleController {
         try {
             const example = await ExampleService.createExample(req);
 
-            return res.status(200).json({
+            return res.status(201).json({
                 success: true,
                 data: {
                     example,
