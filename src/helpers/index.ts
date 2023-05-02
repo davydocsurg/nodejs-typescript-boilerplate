@@ -1,4 +1,4 @@
-import Logging from "./customLog";
+import CLog from "./customLog";
 import catchAsync from "./catchAsync";
 
-export { Logging, catchAsync };
+export { CLog, catchAsync };

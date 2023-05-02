@@ -4,6 +4,7 @@ import { Example } from "../models";
 class ExampleService {
     constructor() {
         this.createExample = this.createExample.bind(this);
+        this.fetchExamples = this.fetchExamples.bind(this);
     }
 
     async createExample(req: Request) {
@@ -13,6 +14,11 @@ class ExampleService {
         });
 
         return example;
+    }
+
+    async fetchExamples() {
+        const examples = await Example.find();
+        return examples;
     }
 }
 

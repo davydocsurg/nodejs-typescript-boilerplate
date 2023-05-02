@@ -1,3 +1,46 @@
-import { mongoDBConnection } from "./database";
+import { mongoDBConnection, mongoDBDisconnection } from "./database";
+import {
+    API_ROUTE,
+    Environment,
+    DB_NAME,
+    FALLBACK_MONGO_PORT,
+    FALLBACK_MONGO_ROOT,
+    FIRST_REPLICA_SET_PORT,
+    LOCAL_MONGO_URI,
+    MONGO_HOST,
+    MONGO_URI,
+    PORT,
+    REPLICA_SET_MONGO_ROOT,
+    SECOND_REPLICA_SET_PORT,
+    TEST_DB_NAME,
+    TEST_MONGO_URI,
+    THIRD_REPLICA_SET_PORT,
+    isDevelopment,
+    isProduction,
+    isTest,
+    isTestingEnvironment,
+} from "./constants";
 
-export { mongoDBConnection };
+export {
+    mongoDBConnection,
+    mongoDBDisconnection,
+    API_ROUTE,
+    Environment,
+    DB_NAME,
+    FALLBACK_MONGO_PORT,
+    FALLBACK_MONGO_ROOT,
+    FIRST_REPLICA_SET_PORT,
+    LOCAL_MONGO_URI,
+    MONGO_HOST,
+    MONGO_URI,
+    PORT,
+    REPLICA_SET_MONGO_ROOT,
+    SECOND_REPLICA_SET_PORT,
+    TEST_DB_NAME,
+    TEST_MONGO_URI,
+    THIRD_REPLICA_SET_PORT,
+    isDevelopment,
+    isProduction,
+    isTest,
+    isTestingEnvironment,
+};

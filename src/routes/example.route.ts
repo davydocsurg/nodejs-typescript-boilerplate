@@ -6,9 +6,14 @@ import { ValidateCreateExampleRequest } from "../middlewares/validators";
 const exampleRoutes = express.Router();
 
 exampleRoutes.post(
-    "/example",
+    "/examples/create",
     ValidateCreateExampleRequest,
     catchAsync(ExampleController.createExample)
+);
+
+exampleRoutes.get(
+    "/examples/fetch",
+    catchAsync(ExampleController.fetchExamples)
 );
 
 export default exampleRoutes;

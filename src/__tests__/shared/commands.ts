@@ -1,10 +1,32 @@
 import { MockResource, exampleResource } from "../__mocks__";
+// import chai from "chai";
+// import chaiHttp from "chai-http";
+import request from "supertest";
+import app from "../../app";
+import { CLog } from "../../helpers";
+import { API_ROUTE } from "../../config";
 
-const createMockResource = (title: string): MockResource => {
-    return {
-        ...exampleResource,
-        title,
-    };
+// chai.use(chaiHttp);
+
+// const chaiServer = chai.request(app).keepOpen();
+const server = request(app);
+
+// export const closeServer = (): ChaiHttp.Agent => chaiServer.close();
+
+const createMockResource = async (title: string, description: string) => {
+    const res = await server
+        .post(`${API_ROUTE}/examples/create`)
+        .send({ title, description });
+    return res;
+    // return {
+    //     ...exampleResource,
+    //     title,
+    // };
 };
 
-export { createMockResource };
+const fetchMockResources = async () => {
+    const res = await server.get(`${API_ROUTE}/examples/fetch`);
+    return res;
+};
+
+export { createMockResource, fetchMockResources };

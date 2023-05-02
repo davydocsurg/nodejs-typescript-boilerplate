@@ -10,7 +10,7 @@ class ExampleController {
         try {
             const example = await ExampleService.createExample(req);
 
-            res.status(200).json({
+            return res.status(201).json({
                 success: true,
                 data: {
                     example,
@@ -21,6 +21,26 @@ class ExampleController {
                 success: false,
                 errors: {
                     err,
+                },
+            });
+        }
+    }
+
+    async fetchExamples(req: Request, res: Response, next: NextFunction) {
+        try {
+            const examples = await ExampleService.fetchExamples();
+
+            return res.status(200).json({
+                success: true,
+                data: {
+                    examples,
+                },
+            });
+        } catch (error: any) {
+            return res.json({
+                success: false,
+                errors: {
+                    error,
                 },
             });
         }
