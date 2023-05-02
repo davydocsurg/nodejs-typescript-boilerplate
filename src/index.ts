@@ -1,12 +1,12 @@
 import dotenv from "dotenv";
 import app from "./app";
 import { mongoDBConnection } from "./config";
-import { Logging } from "./helpers";
+import { CLog } from "./helpers";
 
 dotenv.config();
 // Uncaught Exceptions
 process.on("uncaughtException", (err) => {
-    Logging.error(err);
+    CLog.error(err);
     process.exit(1);
 });
 
@@ -16,10 +16,10 @@ if (!process.env.APP_PORT) {
 }
 exports.APP_PORT = parseInt(process.env.APP_PORT, 10);
 const server = app.listen(exports.APP_PORT, () => {
-    Logging.info(`🚀 Server ready at port: ${exports.APP_PORT}`);
+    CLog.info(`🚀 Server ready at port: ${exports.APP_PORT}`);
 });
 process.on("unhandledRejection", (err) => {
-    Logging.error(err);
+    CLog.error(err);
     server.close(() => {
         process.exit(1);
     });

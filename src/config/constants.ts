@@ -13,7 +13,7 @@ const PORT = 8080;
 const API_ROUTE = isProduction ? "" : `http://localhost:${PORT}/api`;
 
 const DB_NAME = process.env.DB_NAME || "ntb";
-const FALLBACK_MONGO_PORT = "27017";
+const FALLBACK_MONGO_PORT = "27018";
 const FIRST_REPLICA_SET_PORT = "2717";
 const SECOND_REPLICA_SET_PORT = "2727";
 const THIRD_REPLICA_SET_PORT = "2737";
