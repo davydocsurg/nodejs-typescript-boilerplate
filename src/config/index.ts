@@ -1,4 +1,4 @@
-import { mongoDBConnection } from "./database";
+import { mongoDBConnection, mongoDBDisconnection } from "./database";
 import {
     API_ROUTE,
     Environment,
@@ -23,6 +23,7 @@ import {
 
 export {
     mongoDBConnection,
+    mongoDBDisconnection,
     API_ROUTE,
     Environment,
     DB_NAME,

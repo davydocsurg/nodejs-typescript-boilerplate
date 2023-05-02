@@ -19,3 +19,13 @@ export const mongoDBConnection = async () => {
         CLog.error("Connection refused");
     }
 };
+
+export const mongoDBDisconnection = async () => {
+    try {
+        CLog.warn("Attempting to disconnect from MongoDB");
+        await mongoose.disconnect();
+        CLog.success(`Database disconnected successfully`);
+    } catch (err) {
+        CLog.error(err);
+    }
+};

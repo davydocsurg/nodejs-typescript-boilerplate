@@ -21,7 +21,6 @@ const createMockResource = (title: string): MockResource => {
 };
 
 const fetchMockResources = async () => {
-    mongoDBConnection();
     const res = await server.get(`${API_ROUTE}/examples/fetch`);
     return res;
 };

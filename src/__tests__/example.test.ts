@@ -1,7 +1,18 @@
+import { mongoDBConnection, mongoDBDisconnection } from "../config";
 import { CLog } from "../helpers";
 import { createMockResource, fetchMockResources } from "./shared";
 
 describe("/examples", () => {
+    beforeAll(() => {
+        CLog.info("Running beforeAll hook");
+        mongoDBConnection();
+    });
+
+    afterAll(() => {
+        CLog.info("Running afterAll hook");
+        mongoDBDisconnection();
+    });
+
     describe("createExampleResource", () => {
         it("returns a mock resource with the correct properties", () => {
             const mockResource = createMockResource("Test Resource");
@@ -24,27 +35,14 @@ describe("/examples", () => {
         });
     });
 
-    // describe("Create", () => {
-    //     it("should create an example", async () => {
-    //         const mockResource = createMockResource("Example 1");
-    //         const res = await chaiServer
-    //             .post("/example")
-    //             .send(mockResource);
-
-    //         expect(res.status).to.equal(201);
-    //         expect(res.body).to.have.property("data");
-    //         expect(res.body.data).to.have.property("title");
-    //         expect(res.body.data.title).to.equal(mockResource.title);
-    //     });
-    // });
-
-    // describe("Fetch", () => {
-    //     it("should fetch examples", async () => {
-    //         const res = await fetchMockResources();
-
-    //         expect(res.status).to.equal(200);
-    //         expect(res.body).to.have.property("data");
-    //         expect(res.body.data).to.be.an("array");
-    //     });
-    // });
+    describe("POST /create", () => {
+        it("creates a resource", async () => {
+            const response = await fetchMockResources();
+            const initialLength = response.body.data.examples.length;
+            const newResource = await createMockResource("Test Resource");
+            const res = await fetchMockResources();
+            const newLength = res.body.data.examples.length;
+            expect(newLength).toBe(initialLength + 1);
+        });
+    });
 });
