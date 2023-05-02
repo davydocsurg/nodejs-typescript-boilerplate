@@ -1,3 +1,6 @@
+import dotenv from "dotenv";
+dotenv.config();
+
 const Environment = {
     BUILD: "build",
     PRODUCTION: "production",
@@ -5,10 +8,9 @@ const Environment = {
     TEST: "test",
 };
 
-const isTest = process.env.NODE_ENV === Environment.TEST;
+const isTest = (process.env.NODE_ENV as string) === Environment.TEST;
 const isDevelopment = process.env.NODE_ENV === Environment.DEVELOPMENT;
 const isProduction = process.env.NODE_ENV === Environment.PRODUCTION;
-
 const PORT = 8080;
 const API_ROUTE = isProduction ? "" : `http://localhost:${PORT}/api`;
 

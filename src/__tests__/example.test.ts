@@ -1,4 +1,4 @@
-import { Logging } from "../helpers";
+import { CLog } from "../helpers";
 import { createMockResource, fetchMockResources } from "./shared";
 
 describe("/examples", () => {
@@ -18,7 +18,7 @@ describe("/examples", () => {
     describe("GET /fetch", () => {
         it("returns a list of resources", async () => {
             const response = await fetchMockResources();
-            Logging.info(response.body);
+            CLog.info(response.body);
             expect(response.status).toBe(200);
             expect(response.body).toEqual(expect.any(Array));
         });

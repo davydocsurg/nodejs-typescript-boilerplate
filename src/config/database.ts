@@ -1,6 +1,6 @@
 import dotenv from "dotenv";
 import mongoose from "mongoose";
-import { MONGO_URI } from "./constants";
+import { MONGO_URI, isDevelopment, isProduction, isTest } from "./constants";
 
 dotenv.config();
 
@@ -9,9 +9,11 @@ import { CLog } from "../helpers";
 
 export const mongoDBConnection = async () => {
     CLog.info("connecting...");
+    CLog.error(isTest);
 
     try {
-        await mongoose.connect(MONGO_URI);
+        CLog.warn("Attempting MongoDB URI :" + MONGO_URI);
+        await mongoose.connect(MONGO_URI as string);
         CLog.success(`Database connected successfully`);
     } catch (err) {
         CLog.error(err);
