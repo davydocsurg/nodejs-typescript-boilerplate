@@ -1,17 +1,17 @@
 import { MockResource, exampleResource } from "../__mocks__";
-import chai from "chai";
-import chaiHttp from "chai-http";
+// import chai from "chai";
+// import chaiHttp from "chai-http";
 import request from "supertest";
 import app from "../../app";
 import { Logging } from "../../helpers";
 import { API_ROUTE } from "../../config";
 
-chai.use(chaiHttp);
+// chai.use(chaiHttp);
 
-const chaiServer = chai.request(app).keepOpen();
-const testReq = request.agent(app);
+// const chaiServer = chai.request(app).keepOpen();
+const server = request(app);
 
-export const closeServer = (): ChaiHttp.Agent => chaiServer.close();
+// export const closeServer = (): ChaiHttp.Agent => chaiServer.close();
 
 const createMockResource = (title: string): MockResource => {
     return {
