@@ -3,8 +3,8 @@ import { MockResource, exampleResource } from "../__mocks__";
 // import chaiHttp from "chai-http";
 import request from "supertest";
 import app from "../../app";
-import { Logging } from "../../helpers";
-import { API_ROUTE } from "../../config";
+import { CLog } from "../../helpers";
+import { API_ROUTE, mongoDBConnection } from "../../config";
 
 // chai.use(chaiHttp);
 
@@ -21,8 +21,8 @@ const createMockResource = (title: string): MockResource => {
 };
 
 const fetchMockResources = async () => {
-    const res = await request(app).get(`${API_ROUTE}/examples/fetch`);
-    Logging.info(res);
+    mongoDBConnection();
+    const res = await server.get(`${API_ROUTE}/examples/fetch`);
     return res;
 };
 

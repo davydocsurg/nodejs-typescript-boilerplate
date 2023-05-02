@@ -12,7 +12,7 @@ const isTest = (process.env.NODE_ENV as string) === Environment.TEST;
 const isDevelopment = process.env.NODE_ENV === Environment.DEVELOPMENT;
 const isProduction = process.env.NODE_ENV === Environment.PRODUCTION;
 const PORT = 8080;
-const API_ROUTE = isProduction ? "" : `http://localhost:${PORT}/api`;
+const API_ROUTE = `/api`;
 
 const DB_NAME = process.env.DB_NAME || "ntb";
 const FALLBACK_MONGO_PORT = "27018";

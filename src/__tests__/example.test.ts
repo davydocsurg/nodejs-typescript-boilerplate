@@ -20,7 +20,7 @@ describe("/examples", () => {
             const response = await fetchMockResources();
             CLog.info(response.body);
             expect(response.status).toBe(200);
-            expect(response.body).toEqual(expect.any(Array));
+            expect(response.body.data.examples).toEqual(expect.any(Array));
         });
     });
 
